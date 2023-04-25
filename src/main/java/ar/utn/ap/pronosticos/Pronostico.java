@@ -1,15 +1,19 @@
 package ar.utn.ap.pronosticos;
 
 public class Pronostico {
-	private Partido partido;
+	private Partido partido; // Partido a evaluar en funcion de los goles que tiene "adentro"
 	private Equipo equipo;
-	private EnumResultado resultado;
+	/*
+	 * resultadoProno: Resultado del pronóstico con el cual contrastar el resultado
+	 * de "partido" a fin de obtener los puntos
+	 */
+	private EnumResultado resultadoProno;
 
 	public Pronostico(Partido partido, Equipo equipo, EnumResultado resultado) {
 		super();
 		this.partido = partido;
 		this.equipo = equipo;
-		this.resultado = resultado;
+		this.resultadoProno = resultado;
 	}
 
 	public Partido getPartido() {
@@ -21,18 +25,15 @@ public class Pronostico {
 	}
 
 	public EnumResultado getResultado() {
-		return this.resultado;
+		return this.resultadoProno;
 	}
 
 	public int puntos() {
-		// this.resultado -> pred
 		EnumResultado resultadoReal = this.partido.resultado(this.equipo);
-		if (this.resultado.equals(resultadoReal)) {
+		if (this.resultadoProno.equals(resultadoReal)) {
 			return 1;
 		} else {
 			return 0;
 		}
-
 	}
-
 }

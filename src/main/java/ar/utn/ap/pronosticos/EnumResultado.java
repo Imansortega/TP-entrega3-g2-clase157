@@ -1,5 +1,5 @@
 package ar.utn.ap.pronosticos;
 
 public enum EnumResultado {
-	GANADOR,PERDEDOR,EMPATE
+	GANADOR,PERDEDOR,EMPATE,ACIERTO,NOACIERTO
 }
