@@ -5,10 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-/*
- * -- Util --
- * TP Integrador, entrega 3, V 1.1 
- */
+
 public class Util {
 /**
  * -- checkline -- Checkea que el número de campos sea el correcto y que no haya
@@ -53,20 +50,19 @@ public class Util {
  * -- imprimeEstadisticaUsuarios --
  */
 	public static void imprimeEstadisticaUsuarios(Collection<Aciertos> estadisticaUsuarios) {
-		System.out.println(MainTP.VERSION + " - EstadisticaUsuarios");
-		System.out.println("*****************************************************");
+		System.out.println("EstadisticaUsuarios");
+		System.out.println("*******************");
 		for (Aciertos p : estadisticaUsuarios) {			
 			System.out.print("Nombre: " + p.getNombre());
 			System.out.print(" Apuesta: " + p.getResultadoApuesta());
 			System.out.print(" Ronda: " + p.getRonda());
 			System.out.println(" Fase: " + p.getFase());
 		}
-		System.out.println("");
 	}
 	
-	public static void imprimeListaPuntajeConsolidado(ArrayList< PuntajeConsolidado> listaPuntajeConsolidado) {
-		System.out.println(MainTP.VERSION + " - ListaPuntajeConsolidado");
-		System.out.println("*********************************************************");
+	public static void imprimeListaPuntajeConsolidado(ArrayList<PuntajeConsolidado> listaPuntajeConsolidado) {
+		System.out.println("ListaPuntajeConsolidado");
+		System.out.println("***********************");
 		for (PuntajeConsolidado p : listaPuntajeConsolidado) {
 			System.out.print("Nombre: " + p.getNombre());
 			System.out.print(" Puntaje: " + p.getPuntaje());

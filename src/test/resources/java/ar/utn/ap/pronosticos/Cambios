@@ -1,0 +1,67 @@
+- Se agregan comentarios explicativos varios a lo largo del programa ...
+
+
+En clase Partido, método resultado
+----------------------------------
+- Elimino if(equipo.getNombre().equals(equipo1.getNombre())) {}
+  No hace falta la comparación ya que tengo los golesEq1 y golesEq2 que me sirven para identificación
+  
+- Elimino if(golesEq2>golesEq1) {
+				return EnumResultado.GANADOR;	
+			}	else {
+				return EnumResultado.PERDEDOR;
+			}
+  Con las comparaciones anteriores alcanza para obtener el resultado.
+ 
+En clase MainTP
+---------------
+- Renombro "Collection<Partido> partido ..." por "Collection<Partido> listaPartidos ..."
+
+- Renombro "Partido partido = new ..." por "Partido elPartido = new ..." 
+
+- Cambio "Partido partido = new Partido(equipo1, equipo2);" por
+  "Partido elPartido = new Partido(equipo1, equipo2, Integer.parseInt(campos[1]), Integer.parseInt(campos[2]));"
+  Instancio derecho viejo con el constructor completo ...
+  
+- Elimino 
+  partido.setGolesEq1(Integer.parseInt(campos[1]));
+  partido.setGolesEq2(Integer.parseInt(campos[2]));
+  Pues ya le dí los atributos al constructor.
+  
+- Renombro equipo1 y equipo2 en  "// Renombrado !" por equipo1Prono y equipo2Prono para evitar que se
+  confunda uno en el if que sigue.
+  
+- Renombro  partido por partidoAEvaluar
+  Hay demasiados "partido" en el programa.
+  
+En clase Partido
+----------------
+- Elimino en clase partido en el método "resultado" la declaración "Equipo equipo" de la lista
+  de parámetros ya que no se usa.
+  
+En clase Pronostico
+-------------------
+- Se actualiza en Pronóstico en el método puntos la llamada a resultado,
+  sacándole el único argumento de la llamada que tenía, quedando vacio.
+ 
+En clase MainTP
+--------------- 
+- Elimino: Debido a la eliminación anterior, elimino en MainTP "equipo = equipo1Prono;" en los tres if´s que
+  están al final del código.
+ 
+En clase Pronostico
+------------------- 
+- Elimino: Debido a lo anterior Pronóstico elimino "equipo" del constructor y atributos.
+
+En clase MainTP
+--------------- 
+- Actualizo la instanciación de Pronóstico en MainTP eliminando equipo.
+
+- Elimino "Equipo equipo = null;" en la línea previa al último if de MainTP
+
+- Cambio campos a camposProno para que no se confunda con campos de la primera parte en la
+  evaluación de partidos. 
+
+En clase Pronostico
+-------------------
+- Elimino "private Equipo equipo;" y su getter, ya que no se usan.
