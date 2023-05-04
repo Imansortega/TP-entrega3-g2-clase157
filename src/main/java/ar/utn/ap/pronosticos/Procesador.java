@@ -23,45 +23,42 @@ public class Procesador {
 		List<Aciertos> estadisticaUsuarios = new ArrayList<Aciertos>(); // *
 		List<String> lineasPronostico = null;
 
-
 		SubeDataSql resultadosSql = new SubeDataSql();
 		Collection<Partido> listaPartidos = resultadosSql.cargaResultadosSql(DB_URL, USER, PASS);
 		lineasPronostico = resultadosSql.cargaPronosticosSql(DB_URL, USER, PASS);
 
-
-
 		for (String lineaPronostico : lineasPronostico) {
 			lineaPronostico.replace("\r", "");
 
-				String[] camposProno = lineaPronostico.split(",");
-				Equipo equipo1Prono = new Equipo(camposProno[idxEquipo1Prono]);
-				// Pongo un ".replace("\r", "")" para eliminar un "\r" al final del string
-				Equipo equipo2Prono = new Equipo(camposProno[idxEquipo2Prono].replace("\r", ""));
-				nombre = camposProno[idxNombre];
-				Partido partidoAEvaluar = null;
+			String[] camposProno = lineaPronostico.split(",");
+			Equipo equipo1Prono = new Equipo(camposProno[idxEquipo1Prono]);
+			// Pongo un ".replace("\r", "")" para eliminar un "\r" al final del string
+			Equipo equipo2Prono = new Equipo(camposProno[idxEquipo2Prono].replace("\r", ""));
+			nombre = camposProno[idxNombre];
+			Partido partidoAEvaluar = null;
 
-				// Busco los partidos de la apuesta específica dentro de la colección
-				// listaPartidos
-				for (Partido partidoCol : listaPartidos) {
-					if (partidoCol.getEquipo1().getNombre().equals(equipo1Prono.getNombre())
-							&& partidoCol.getEquipo2().getNombre().equals(equipo2Prono.getNombre())) {
-						partidoAEvaluar = partidoCol;
-						ronda = partidoCol.getRonda();
-						fase = partidoCol.getFase();
-					}
+			// Busco los partidos de la apuesta específica dentro de la colección
+			// listaPartidos
+			for (Partido partidoCol : listaPartidos) {
+				if (partidoCol.getEquipo1().getNombre().equals(equipo1Prono.getNombre())
+						&& partidoCol.getEquipo2().getNombre().equals(equipo2Prono.getNombre())) {
+					partidoAEvaluar = partidoCol;
+					ronda = partidoCol.getRonda();
+					fase = partidoCol.getFase();
 				}
-				EnumResultado apuesta = null;
-				if ("X".equals(camposProno[localProno])) {
-					apuesta = EnumResultado.GANADOR;
-				}
-				if ("X".equals(camposProno[empateProno])) {
-					apuesta = EnumResultado.EMPATE;
-				}
-				if ("X".equals(camposProno[visitanteProno])) {
-					apuesta = EnumResultado.PERDEDOR;
-				}
-				// Evaluo si hubo acierto
-				if (apuesta.equals(partidoAEvaluar.resultado(partidoAEvaluar.getEquipo1()))) {
+			}
+			EnumResultado apuesta = null;
+			if ("X".equals(camposProno[localProno])) {
+				apuesta = EnumResultado.GANADOR;
+			}
+			if ("X".equals(camposProno[empateProno])) {
+				apuesta = EnumResultado.EMPATE;
+			}
+			if ("X".equals(camposProno[visitanteProno])) {
+				apuesta = EnumResultado.PERDEDOR;
+			}
+			// Evaluo si hubo acierto
+			if (apuesta.equals(partidoAEvaluar.resultado(partidoAEvaluar.getEquipo1()))) {
 
 // 						****** IMPORTANTE !!! *******
 // no paso el enum "ACIERTO" O "NOACIERTO" en "miApuesta", ya que si llegue aca sabemos
@@ -71,9 +68,9 @@ public class Procesador {
 
 				Aciertos miApuesta = new Aciertos(nombre, apuesta, ronda, fase); // *
 				estadisticaUsuarios.add(miApuesta);
+			}
+			Util.ordenaTabla(estadisticaUsuarios);
 		}
-		Util.ordenaTabla(estadisticaUsuarios);
-		}	
 		return estadisticaUsuarios;
 	}
 
@@ -88,7 +85,8 @@ public class Procesador {
 
 		ArrayList<PuntajeConsolidado> listaPuntajeConsolidado = new ArrayList<PuntajeConsolidado>(); // Se llena aca
 		Reglas misReglas = new Reglas(); // Para usar reglas
-		PuntajeConsolidado objetito = new PuntajeConsolidado(); // objetito está para no llamar a misReglas mas de una vez.
+		PuntajeConsolidado objetito = new PuntajeConsolidado(); // objetito está para no llamar a misReglas mas de una
+																// vez.
 		int idx = 0; // indice para nueva tabla listaPuntajeConsolidado
 		Util.ordenaTabla(estadisticaUsuarios); // Usar en caso de querer la tabla ordenada
 
