@@ -149,13 +149,4 @@ public class Config {
 			System.exit(1);
 		}
 	}
-	
-
-//	public static void main(String[] args) {
-//		Config.cargaConfig();
-//		System.out.println("Cantidad de equipos: " + CANTIDAD_DE_EQUIPOS);
-//		System.out.println("Cantidad de fases: " + CANTIDAD_DE_FASES);
-//		System.out.println("Archivo resultados: " + ARCH_RESULTADOS);
-//	}
-
 }

@@ -5,6 +5,7 @@ import java.util.List;
 /*
  * TP Integrador, entrega 3, V 1.1 
  * Grupo 2, clase 157
+ * Fabiana Zamboni - Ignacio Manso
  */
 public class MainTP {
 	public static final String VERSION = "TP Integrador, entrega 3, V 1.1";
